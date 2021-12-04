@@ -1,9 +1,14 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
-export const Container = styled.div`
+interface ContainerProps {
+  available: boolean
+}
+
+export const Container = styled.div<ContainerProps>`
   background: #f0f0f5;
   border-radius: 8px;
-  
+
+ 
   header {
     background: #ffb84d;
     border-radius: 8px 8px 0px 0px;
@@ -12,8 +17,16 @@ export const Container = styled.div`
     transition: 0.3s opacity;
     text-align: center;
 
-  
-    
+    // && --->> if ternário
+    // 1 === 0 ? 'arroz' : null
+    // 1 === 0 && 'arroz'
+   // movie.image || bonequinho
+   
+    ${props =>
+    !props.available &&
+    css`
+      opacity: 0.3;
+    `}
 
     img {
       pointer-events: none;
@@ -139,4 +152,4 @@ export const Container = styled.div`
       }
     }
   }
-`;
+`

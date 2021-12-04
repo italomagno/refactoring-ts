@@ -1,22 +1,46 @@
-import { Component, useState } from 'react';
+import { Component, ReactNode, useEffect, useState } from 'react';
 import ReactModal from 'react-modal';
 
 
+
 interface ModalProps{
-  handleRequestCloseFunc: () => void;
-  isOpen: false
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+  children: ReactNode;
 }
 
-export function Modal({handleRequestCloseFunc}:ModalProps){
-  const [isOpen, setIsOpen] = useState(Boolean)
 
-  handleRequestCloseFunc
+function Modal({ setIsOpen,children,isOpen }:ModalProps) {
 
-  
-  return(
-<ReactModal
+const [modalStatus,setModalStatus] = useState(false)
+
+//class Modal extends Component {
+// constructor(props) {
+//   super(props);
+//   const { isOpen } = this.props;
+//   this.state = {
+//     modalStatus: isOpen
+//   }
+// }
+
+  useEffect(()=>{
+    setModalStatus(isOpen)
+  },[isOpen])
+
+  // componentDidUpdate (prevProps) {
+  //   const { isOpen } = this.props;
+
+  //   if (prevProps.isOpen !== isOpen) {
+  //     console.log(this.props)
+  //     this.setState({ modalStatus: isOpen })
+  //   }
+  // }
+
+
+    return (
+      <ReactModal
         shouldCloseOnOverlayClick={!false}
-        onRequestClose={setIsOpen}
+        onRequestClose={() => setIsOpen(false)}
         isOpen={modalStatus}
         ariaHideApp={false}
         style={{
@@ -40,39 +64,7 @@ export function Modal({handleRequestCloseFunc}:ModalProps){
       >
         {children}
       </ReactModal>
-  )
-}
-
-
-
-/*
-class Modal extends Component {
-  constructor(props) {
-    super(props);
-
-    const { isOpen } = this.props;
-    this.state = {
-      modalStatus: isOpen
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    const { isOpen } = this.props;
-
-    if (prevProps.isOpen !== isOpen) {
-      console.log(this.props)
-      this.setState({ modalStatus: isOpen })
-    }
-  }
-
-  render() {
-    const { children, setIsOpen } = this.props;
-    const { modalStatus } = this.state;
-
-    return (
-      
     );
-  }
-};
-*/
+  };
+
 export default Modal;
