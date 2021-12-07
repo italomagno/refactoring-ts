@@ -10,7 +10,7 @@
     },
     {
       "id": 2,
-      "name": "Veggie",
+      "name": "macarrão ao alho e olho",
       "description": "Macarrão com pimentão, ervilha e ervas finas colhidas no himalaia.",
       "price": "21.90",
       "available": true,
@@ -25,10 +25,10 @@
       "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food3.png"
     },
     {
-      "image": "lalala",
-      "name": "lalala",
-      "price": "lalala",
-      "description": "lalala",
+      "image": "italo",
+      "name": "magno",
+      "price": "25.50",
+      "description": "moura",
       "available": true,
       "id": 4
     }

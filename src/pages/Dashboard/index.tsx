@@ -6,8 +6,7 @@ import Food from '../../components/Food';
 import ModalAddFood from '../../components/ModalAddFood';
 import ModalEditFood from '../../components/ModalEditFood';
 import { FoodsContainer } from './styles';
-
-
+import { DataFormRocketSeatProps } from '../../../types';
 
 interface Food{
   id: number,
@@ -18,6 +17,7 @@ interface Food{
   image: string
 
 }
+
 
 function Dashboard(){
 
@@ -51,14 +51,14 @@ useEffect(()=>{
   //   this.setState({ foods: response.data });
   // } */
 
-  const handleAddFood = async (food: Food) => {
+  const handleAddFood = async (food: DataFormRocketSeatProps) => {
     try {
       const response = await api.post('/foods', {
         ...food,
         available: true,
       });
 
-      setFoodList((prev) => [...prev, response.data]);
+      setFoodList([...foodList, response.data]);
       //setFoodList([...foodList, response.data]);
       //setFoodList([...foodList, response.data]);
     }catch (err) {
@@ -82,7 +82,7 @@ useEffect(()=>{
     }
   } */
 
-    const handleUpdateFood = async (food : Food)=> {
+    const handleUpdateFood = async (food : DataFormRocketSeatProps)=> {
       try {
         const response = await api.put(
           `/foods/${editingFood.id}`,
@@ -160,7 +160,7 @@ useEffect(()=>{
 const handleEditFood = (food: Food) => {
 
   setEditingFood(food)
-  setModalOpen(true)
+  setEditModalOpen(true)
 
 }
   /* handleEditFood = food => {
@@ -173,7 +173,7 @@ const handleEditFood = (food: Food) => {
         <ModalAddFood
           isOpen={modalOpen}
           setIsOpen={toggleModal}
-          handleAddFood={()=> handleAddFood}
+          handleAddFood={handleAddFood}
         />
         <ModalEditFood
           isOpen={editModalOpen}

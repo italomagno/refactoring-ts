@@ -3,11 +3,10 @@ import { FiPlusSquare } from 'react-icons/fi';
 
 import { Container } from './styles';
 import Logo from '../../assets/logo.svg';
+import { ModalProp } from '../../../types';
 
 
-interface ModalProp{
-openModal: () => void;
-}
+
 
 function Header({openModal}: ModalProp){
 
